@@ -1,0 +1,6 @@
+ol/ubuntu-xfce-vnc:latest
+docker pull jlesage/firefox:latest
+
+
+docker-compose down
+docker-compose up -d

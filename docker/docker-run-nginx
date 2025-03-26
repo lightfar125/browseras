@@ -1,0 +1,4 @@
+docker run -d --name nginx_proxy -p 443:443 \
+    -v $(pwd)/nginx/nginx.conf:/etc/nginx/nginx.conf \
+    -v $(pwd)/nginx/ssl:/etc/nginx/ssl \
+    nginx

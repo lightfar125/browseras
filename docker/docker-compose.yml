@@ -1,0 +1,32 @@
+version: '3'
+services:
+  firefox-browser1:
+    image: dorowu/ubuntu-desktop-lxde-vnc
+    container_name: firefox-browser1
+    environment:
+      - VNC_NO_PASSWORD=1
+    ports:
+      - "3001:80"
+    restart: unless-stopped
+
+  firefox-browser2:
+    image: dorowu/ubuntu-desktop-lxde-vnc
+    container_name: firefox-browser2
+    environment:
+      - VNC_NO_PASSWORD=1
+    ports:
+      - "3002:80"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./server.crt:/etc/ssl/certs/server.crt
+      - ./server.key:/etc/ssl/private/server.key
+      - ./ca.crt:/etc/ssl/certs/ca.crt
+    ports:
+      - "443:443"
+    restart: unless-stopped
+
